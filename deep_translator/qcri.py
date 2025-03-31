@@ -1,9 +1,9 @@
+from security import safe_requests
+
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 import os
 from typing import List, Optional
-
-import requests
 
 from deep_translator.base import BaseTranslator
 from deep_translator.constants import (
@@ -64,7 +64,7 @@ class QcriTranslator(BaseTranslator):
         if not params:
             params = self.params
         try:
-            res = requests.get(
+            res = safe_requests.get(
                 self._base_url.format(endpoint=self.api_endpoints[endpoint]),
                 params=params,
             )

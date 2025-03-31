@@ -1,12 +1,11 @@
 """
 mymemory translator API
 """
+from security import safe_requests
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 from typing import List, Optional, Union
-
-import requests
 
 from deep_translator.base import BaseTranslator
 from deep_translator.constants import BASE_URLS, MY_MEMORY_LANGUAGES_TO_CODES
@@ -65,7 +64,7 @@ class MyMemoryTranslator(BaseTranslator):
             if self.email:
                 self._url_params["de"] = self.email
 
-            response = requests.get(
+            response = safe_requests.get(
                 self._base_url, params=self._url_params, proxies=self.proxies
             )
 

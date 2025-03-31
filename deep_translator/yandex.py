@@ -1,6 +1,7 @@
 """
 Yandex translator API
 """
+from security import safe_requests
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
@@ -67,7 +68,7 @@ class YandexTranslator(BaseTranslator):
                 version=self.api_version, endpoint="getLangs"
             )
             print("url: ", url)
-            response = requests.get(
+            response = safe_requests.get(
                 url, params={"key": self.api_key}, proxies=proxies
             )
         except requests.exceptions.ConnectionError:
