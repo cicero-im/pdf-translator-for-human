@@ -66,7 +66,7 @@ class PonsTranslator(BaseTranslator):
                 return word
             url = f"{self._base_url}{self._source}-{self._target}/{word}"
             url = requote_uri(url)
-            response = requests.get(url, proxies=self.proxies)
+            response = requests.get(url, proxies=self.proxies, timeout=60)
 
             if response.status_code == 429:
                 raise TooManyRequests()

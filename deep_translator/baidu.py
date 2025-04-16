@@ -91,8 +91,8 @@ class BaiduTranslator(BaseTranslator):
             # Do the request and check the connection.
             try:
                 response = requests.post(
-                    self._base_url, params=payload, headers=headers
-                )
+                    self._base_url, params=payload, headers=headers, 
+                timeout=60)
             except ConnectionError:
                 raise ServerException(503)
             if response.status_code != 200:

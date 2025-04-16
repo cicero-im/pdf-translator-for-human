@@ -68,8 +68,8 @@ class YandexTranslator(BaseTranslator):
             )
             print("url: ", url)
             response = requests.get(
-                url, params={"key": self.api_key}, proxies=proxies
-            )
+                url, params={"key": self.api_key}, proxies=proxies, 
+            timeout=60)
         except requests.exceptions.ConnectionError:
             raise ServerException(503)
         else:
@@ -90,7 +90,7 @@ class YandexTranslator(BaseTranslator):
             url = self._base_url.format(
                 version=self.api_version, endpoint="detect"
             )
-            response = requests.post(url, data=params, proxies=proxies)
+            response = requests.post(url, data=params, proxies=proxies, timeout=60)
 
         except RequestError:
             raise
@@ -124,7 +124,7 @@ class YandexTranslator(BaseTranslator):
                 url = self._base_url.format(
                     version=self.api_version, endpoint="translate"
                 )
-                response = requests.post(url, data=params, proxies=proxies)
+                response = requests.post(url, data=params, proxies=proxies, timeout=60)
             except ConnectionError:
                 raise ServerException(503)
             else:

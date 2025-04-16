@@ -67,7 +67,7 @@ class LingueeTranslator(BaseTranslator):
             # %s-%s/translation/%s.html
             url = f"{self._base_url}{self._source}-{self._target}/search/?source={self._source}&query={word}"
             url = requote_uri(url)
-            response = requests.get(url, proxies=self.proxies)
+            response = requests.get(url, proxies=self.proxies, timeout=60)
 
             if response.status_code == 429:
                 raise TooManyRequests()

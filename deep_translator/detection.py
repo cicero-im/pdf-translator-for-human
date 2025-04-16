@@ -44,8 +44,8 @@ def get_request_body(
             headers = config["headers"]
             headers["Authorization"] = headers["Authorization"].format(api_key)
             response = requests.post(
-                config["url"], json={"q": text}, headers=headers
-            )
+                config["url"], json={"q": text}, headers=headers, 
+            timeout=60)
 
             body = response.json().get("data")
             return body

@@ -65,8 +65,8 @@ class GoogleTranslator(BaseTranslator):
                 self._url_params[self.payload_key] = text
 
             response = requests.get(
-                self._base_url, params=self._url_params, proxies=self.proxies
-            )
+                self._base_url, params=self._url_params, proxies=self.proxies, 
+            timeout=60)
             if response.status_code == 429:
                 raise TooManyRequests()
 
