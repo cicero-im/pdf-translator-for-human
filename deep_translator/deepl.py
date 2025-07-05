@@ -1,9 +1,9 @@
+from security import safe_requests
+
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 import os
 from typing import List, Optional
-
-import requests
 
 from deep_translator.base import BaseTranslator
 from deep_translator.constants import (
@@ -77,7 +77,7 @@ class DeeplTranslator(BaseTranslator):
             }
             # Do the request and check the connection.
             try:
-                response = requests.get(
+                response = safe_requests.get(
                     self._base_url + translate_endpoint, params=params
                 )
             except ConnectionError:

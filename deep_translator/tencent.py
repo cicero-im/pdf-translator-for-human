@@ -1,6 +1,7 @@
 """
 tencent translator API
 """
+from security import safe_requests
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
@@ -10,8 +11,6 @@ import hmac
 import os
 import time
 from typing import List, Optional
-
-import requests
 
 from deep_translator.base import BaseTranslator
 from deep_translator.constants import (
@@ -105,7 +104,7 @@ class TencentTranslator(BaseTranslator):
 
             # Do the request and check the connection.
             try:
-                response = requests.get(self._base_url, params=params)
+                response = safe_requests.get(self._base_url, params=params)
             except ConnectionError:
                 raise ServerException(503)
             # If the answer is not success, raise server exception.

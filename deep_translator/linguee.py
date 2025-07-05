@@ -1,12 +1,11 @@
 """
 linguee translator API
 """
+from security import safe_requests
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 from typing import List, Optional, Union
-
-import requests
 from bs4 import BeautifulSoup
 from requests.utils import requote_uri
 
@@ -67,7 +66,7 @@ class LingueeTranslator(BaseTranslator):
             # %s-%s/translation/%s.html
             url = f"{self._base_url}{self._source}-{self._target}/search/?source={self._source}&query={word}"
             url = requote_uri(url)
-            response = requests.get(url, proxies=self.proxies)
+            response = safe_requests.get(url, proxies=self.proxies)
 
             if response.status_code == 429:
                 raise TooManyRequests()

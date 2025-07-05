@@ -1,12 +1,11 @@
 """
 google translator API
 """
+from security import safe_requests
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 from typing import List, Optional
-
-import requests
 from bs4 import BeautifulSoup
 
 from deep_translator.base import BaseTranslator
@@ -64,7 +63,7 @@ class GoogleTranslator(BaseTranslator):
             if self.payload_key:
                 self._url_params[self.payload_key] = text
 
-            response = requests.get(
+            response = safe_requests.get(
                 self._base_url, params=self._url_params, proxies=self.proxies
             )
             if response.status_code == 429:
