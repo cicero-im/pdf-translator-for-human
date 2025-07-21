@@ -67,7 +67,7 @@ class QcriTranslator(BaseTranslator):
             res = requests.get(
                 self._base_url.format(endpoint=self.api_endpoints[endpoint]),
                 params=params,
-            )
+            timeout=60)
             return res.text if return_text else res
         except Exception as e:
             raise e

@@ -69,8 +69,8 @@ class MicrosoftTranslator(BaseTranslator):
             "=translation "
         )
         microsoft_languages_response = requests.get(
-            microsoft_languages_api_url
-        )
+            microsoft_languages_api_url, 
+        timeout=60)
         translation_dict = microsoft_languages_response.json()["translation"]
 
         return {
@@ -99,7 +99,7 @@ class MicrosoftTranslator(BaseTranslator):
                     headers=self.headers,
                     json=valid_microsoft_json,
                     proxies=self.proxies,
-                )
+                timeout=60)
             except requests.exceptions.RequestException:
                 exc_type, value, traceback = sys.exc_info()
                 logging.warning(f"Returned error: {exc_type.__name__}")

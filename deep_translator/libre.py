@@ -87,8 +87,8 @@ class LibreTranslator(BaseTranslator):
             # Do the request and check the connection.
             try:
                 response = requests.post(
-                    self._base_url + translate_endpoint, params=params
-                )
+                    self._base_url + translate_endpoint, params=params, 
+                timeout=60)
             except ConnectionError:
                 raise ServerException(503)
             # If the answer is not success, raise server exception.

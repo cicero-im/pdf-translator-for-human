@@ -65,8 +65,8 @@ class PapagoTranslator(BaseTranslator):
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             }
             response = requests.post(
-                self._base_url, headers=headers, data=payload
-            )
+                self._base_url, headers=headers, data=payload, 
+            timeout=60)
             if request_failed(status_code=response.status_code):
                 raise Exception(
                     f"Translation error! -> status code: {response.status_code}"

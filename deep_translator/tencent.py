@@ -105,7 +105,7 @@ class TencentTranslator(BaseTranslator):
 
             # Do the request and check the connection.
             try:
-                response = requests.get(self._base_url, params=params)
+                response = requests.get(self._base_url, params=params, timeout=60)
             except ConnectionError:
                 raise ServerException(503)
             # If the answer is not success, raise server exception.
