@@ -1,12 +1,12 @@
 """
 baidu translator API
 """
+import secrets
 
 __copyright__ = "Copyright (C) 2020 Nidhal Baccouri"
 
 import hashlib
 import os
-import random
 from typing import List, Optional
 
 import requests
@@ -74,7 +74,7 @@ class BaiduTranslator(BaseTranslator):
                 return text
 
             # Create the request parameters.
-            salt = random.randint(32768, 65536)
+            salt = secrets.SystemRandom().randint(32768, 65536)
             sign = hashlib.md5(
                 (self.appid + text + str(salt) + self.appkey).encode("utf-8")
             ).hexdigest()
